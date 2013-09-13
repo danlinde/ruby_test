@@ -19,7 +19,18 @@ describe Takeaway do
 	end
 
 	it 'should calculate the customers total' do
-		t.stub!(:items)	{[1, 1, 1]}
+		t.stub!(:items)	{["1 1 1"]}
 		expect(t.write_check).to eq(14.85)
 	end
+
+	it 'should raise exception if totals do not match' do
+		t.stub!(:customer_total) {10}
+		t.stub!(:get_check_total) {9}
+		expect{t.verify_total}.to raise_error "you tried to cheat me!!! get out!!!"
+	end
+
+	it 'should send an order confirmation' do
+		expect(t.order_confirmation).to eq(<>)
+	end
+
 end

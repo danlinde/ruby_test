@@ -1,5 +1,8 @@
 require_relative './item'
 
+require 'bundler/setup'
+require 'twilio-ruby'
+
 class Takeaway
 
 	def initialize
@@ -29,12 +32,19 @@ class Takeaway
 		@order_details.inject(0) {|sum, item| sum + item.amount}.round(2)
 	end
 
-
 	def verify_total
 		raise "you tried to cheat me!!! get out!!!"
 			unless @customer_total == @get_check_total
-		end
+				self.order_confirmation
+			end
 	end
 
+	def order_confirmation
+		client = Twilio::REST::Client.new 'AC78ba8e7bc5838510fcb7195c643184bf', '4c5eac140585ba9a0f70822222ac0957'
+		client.account.sms.messages.create(
+		  :from => '+15005550006',
+		  :to => '+447411043924',
+		  :body => 'Thank you! Your order was placed and will be delivered before 18:52')
+	end
 end
 

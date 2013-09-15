@@ -8,7 +8,7 @@ describe Item do
 	end
 
 	it 'should return the amount for the item selected' do
-		expect(item.amount).to eq(19.99)
+		expect(item.amount).to eq(20)
 	end
 
 end

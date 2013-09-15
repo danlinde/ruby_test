@@ -1,7 +1,6 @@
-require_relative './item'
-
-require 'bundler/setup'
 require 'twilio-ruby'
+
+require_relative './item'
 
 class Takeaway
 
@@ -23,20 +22,21 @@ class Takeaway
 
 	def get_check_total
 		puts "What is your total? : "
-		@customer_total = gets.to_f
+		@customer_total = gets.to_i
 	end
 
 	def write_check
-		items = @order.split(" ")
-		@order_details = items.map {|item| Item.new(item.to_i)}
-		@order_details.inject(0) {|sum, item| sum + item.amount}.round(2)
+		items = [1,1,1]
+		order_details = items.map {|item| Item.new(item.to_i)}
+		@amount_per_till = order_details.inject(0) {|sum, item| sum + item.amount}
+
 	end
 
 	def verify_total
-		raise "you tried to cheat me!!! get out!!!"
-			unless @customer_total == @get_check_total
-				self.order_confirmation
-			end
+		if @customer_total == @amount_per_till
+			self.order_confirmation
+		else raise "you tried to cheat me!!! get out!!!"
+		end
 	end
 
 	def order_confirmation

@@ -9,11 +9,11 @@ class Item
 
 	def amount
 		if @item == 1   		# Daily Special
-			@amount = 4.95
+			@amount = 5.to_i
 		elsif @item == 2		# Galaxy Shrimp
-			@amount = 19.99
+			@amount = 20.to_i
 		elsif @item == 3		# 4 Cans of Coke
-			@amount = 3.99
+			@amount = 4.to_i
 		end
 	end
 

@@ -9,7 +9,7 @@ class Takeaway
 	end
 
 	def get_menu
-		menu = File.read("/Users/hackney/temp/ruby_test/lib/menu.dat")
+		menu = File.read("lib/menu.dat")
 		menu
 	end
 

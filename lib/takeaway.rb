@@ -26,7 +26,7 @@ class Takeaway
 	end
 
 	def write_check
-		items = [1,1,1]
+		items = @order.split(" ")
 		order_details = items.map {|item| Item.new(item.to_i)}
 		@amount_per_till = order_details.inject(0) {|sum, item| sum + item.amount}
 

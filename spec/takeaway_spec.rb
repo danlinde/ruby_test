@@ -19,22 +19,26 @@ describe Takeaway do
 	end
 
 	it 'should calculate the customers total' do
-		# t.stub(:items)	{[1, 1, 1]}
-		# expect(t.write_check).to eq(15)
-		t.write_check
-		# items stub doesn't work. May need to double Item.new
+		t.stub(:gets).and_return("1 1 1")
+		t.get_order
+		expect(t.write_check).to eq(15)
 	end
 
 	it 'should raise exception if totals do not match' do
-		# t.stub(:customer_total) {25}
-		# t.stub(:amount_per_till) {5}
-		# expect{t.verify_total}.to raise_error
-		t.verify_total
+		t.stub(:gets => 25)
+		t.get_check_total
+		t.stub(:amount_per_till => 5)
+		expect{t.verify_total}.to raise_error
 	end
 
-	it 'should send an order confirmation' do
-		expect(t.order_confirmation).to be_true
+	it 'should set up a new client instance with the given sid and token' do
+		twilio = Twilio::REST::Client.new('someSid', 'someToken')
+		twilio.account_sid.should == 'someSid'
+		twilio.instance_variable_get('@auth_token').should == 'someToken'
+  	end
 
+  	it 'should send an order confirmation' do
+		expect(t.order_confirmation).to be_true
 	end
 
 end

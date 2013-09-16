@@ -41,4 +41,10 @@ describe Takeaway do
 		expect(t.order_confirmation).to be_true
 	end
 
+	it 'should show delivery time to be one hour from now' do
+		@time_now = Time.parse("2013-09-16 12:09:34")
+  		Time.stub(:now).and_return(@time_now)
+		expect(t.delivery_time).to eq(Time.now + (60 * 60))
+	end
+
 end

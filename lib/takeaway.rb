@@ -39,13 +39,16 @@ class Takeaway
 		end
 	end
 
+	def delivery_time
+		Time.now + (60 * 60)
+	end
+
 	def order_confirmation
-		time = Time.now + (60 * 60)
 		client = Twilio::REST::Client.new 'AC78ba8e7bc5838510fcb7195c643184bf', '4c5eac140585ba9a0f70822222ac0957'
 		client.account.sms.messages.create(
 		  :from => '+15005550006',
 		  :to => '+447411043924',
-		  :body => 'Thank you! Your order was placed and will be delivered before #{time}')
+		  :body => 'Thank you! Your order was placed and will be delivered before #{delivery_time}')
 	end
 end
 

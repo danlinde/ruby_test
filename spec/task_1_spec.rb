@@ -1,21 +1,21 @@
 require_relative '../lib/task_1'
 
-describe Array do
-	let(:sum_array) {Array.new}
+describe Array2 do
+	let(:array) {Array2.new}
 
 	it "should compute the sum of an empty array" do
-		array = []
-		expect(sum_array.sum(array)).to eq(0)
+		test_array = []
+		expect(array.inject(test_array, 'sum')).to eq 0
 	end
 
 	it "should compute the sum of an array with one element" do
-		array = [5]
-		expect(sum_array.sum(array)).to eq(5)
+		test_array = [5]
+		expect(array.inject(test_array, 'sum')).to eq(5)
 	end
 
 	it "should compute the sum of an array with many elements" do
-		array = [5, 10, 15, 20]
-		expect(sum_array.sum(array)).to eq(50)
+		test_array = [5, 10, 15, 20]
+		expect(array.inject(test_array, 'sum')).to eq(50)
 	end
 
 end

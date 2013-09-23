@@ -1,30 +1,55 @@
-class Array2
+class Array
+
+	# attr_reader :array
+
+	# def initialize(array)
+	# 	@array = array
+	# end
+
 
 	# array.inject(:+)
 
-	# def inject(array)
-	# 	sum = []
-	# 	array.map {|x| sum += x }
-	# 	p sum
+	# def inject(operator)
+	# 	if operator == 'sum'
+	# 		sum = 0
+	# 		@array.map {|x| sum += x }
+	# 		sum
+	# 	else mult = 1
+	# 		@array.map {|x| mult *= x}
+	# 		mult
+	# 	end
 	# end
 
-	def inject(array, operator)
-		if operator == 'sum'
-			return 0 unless array.length > 0
-			return array.shift + inject(array, operator)
-		else 
-			return 1 unless array.length > 0
-			return array.shift * inject(array, operator)
-		end
-	end
+	# def inject(operator, l)
+	# 	if operator == 'sum'
+	# 		return 0 unless l > 0
+	# 		l -= 1
+	# 		return @array[l] + inject(operator, l)
+	# 	else 
+	# 		return 1 unless l > 0
+	# 		l -= 1
+	# 		return @array[l] * inject(operator, l)
+	# 	end
 
+	# end
+
+	def insect
+		memo = self[0]
+		self[1..-1].each {|elem| memo = yield(memo, elem)}
+		memo
+	end
 
 end
 
 
 
-# a = Array2.new
+a = [1,2,3,4]
 
-# p a.inject([1,2,3,4], 'multiply')
+
+
+p a.insect { |memo, elem| memo + elem}
+
+
+
 
 

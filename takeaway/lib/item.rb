@@ -23,7 +23,3 @@ class Item
 	end
 
 end
-
-# item = Item.new(1)
-
-# p item

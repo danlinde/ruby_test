@@ -22,8 +22,3 @@ describe Sum_Array do
 	end
 
 end
-
-# To understand how to write it, answer the following questions:
-# 	What would be the sum of the array if you knew the sum of all values but one?
-# 	What would be the sum of an empty array?
-# 	What woulbe the base case for this method?
